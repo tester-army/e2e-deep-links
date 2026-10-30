@@ -5,12 +5,16 @@ import { colors, type } from '@/constants/theme';
 
 const mark = require('../../assets/images/e2e-mark.png');
 
-// A linked screen always has the list under it (`anchor` in the root layout), so Back needs no check.
 export function AppHeader({ back = false }: { back?: boolean }) {
   return (
     <View style={styles.header}>
       {back ? (
-        <Pressable testID="back" accessibilityRole="button" hitSlop={12} onPress={() => router.back()}>
+        <Pressable
+          testID="back"
+          accessibilityRole="button"
+          accessibilityLabel="Back"
+          hitSlop={12}
+          onPress={() => router.back()}>
           {({ pressed }) => <Text style={[type.button, pressed ? styles.bright : styles.soft]}>← Back</Text>}
         </Pressable>
       ) : (

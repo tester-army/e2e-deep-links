@@ -26,7 +26,6 @@ export const terminal = {
   id: 'rgb(165, 214, 255)',
 };
 
-// The family names inside the font files, which the expo-font plugin embeds.
 export const fonts = {
   display: 'Stack Sans Notch',
   sans: 'Inter',

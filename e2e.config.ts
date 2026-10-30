@@ -6,8 +6,7 @@ try {
   process.loadEnvFile(new URL('.env.local', import.meta.url));
 } catch {}
 
-// A link that launches the app on iOS carries no launch arguments, so Metro stays on 8081, the port the Debug build has
-// compiled in.
+// A link that launches the iOS app can't pass it another Metro port, so Metro stays on the default, 8081.
 const app = {
   bundleId: 'dev.e2e.deeplinks',
   command: {

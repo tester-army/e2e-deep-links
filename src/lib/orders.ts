@@ -7,7 +7,6 @@ export type Order = {
   item: string;
   detail: string;
   cents: number;
-  /** When each step was reached; the last one is the status. */
   times: string[];
 };
 
