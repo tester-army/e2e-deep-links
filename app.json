@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "e2e-deep-links",
+    "name": "e2e Deep Links",
     "slug": "e2e-deep-links",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,9 +8,11 @@
     "scheme": "e2edeeplinks",
     "userInterfaceStyle": "automatic",
     "ios": {
+      "bundleIdentifier": "dev.e2e.deeplinks",
       "icon": "./assets/expo.icon"
     },
     "android": {
+      "package": "dev.e2e.deeplinks",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
