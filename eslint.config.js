@@ -6,4 +6,9 @@ module.exports = defineConfig([
   {
     ignores: ['dist/*', 'ios/*', 'android/*', '.expo/*', '.e2e/*'],
   },
+  {
+    // An e2e fixture hands its value to `use`, which this rule mistakes for React's `use()`.
+    files: ['tests/**'],
+    rules: { 'react-hooks/rules-of-hooks': 'off' },
+  },
 ]);
