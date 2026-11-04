@@ -27,17 +27,17 @@ export default function OrderScreen() {
         <OrderLabel order={order} />
       ) : (
         <Missing
-          kicker="Order"
+          kicker="order"
           ghost={`#${id}`}
-          title={`No order #${id}`}
+          title={`no order #${id}`}
           titleTestID="order-missing"
-          body="The link points to an order that isn't in your account. It may be an old link, or a mistyped one."
+          body="the link points to an order that isn't in your account. it may be an old link, or a mistyped one."
         />
       )}
       <Readout
         rows={[
-          { label: 'Screen', value: 'order/[id]' },
-          { label: 'Opened', value: openedBy(via), testID: 'opened' },
+          { label: 'screen', value: 'order/[id]' },
+          { label: 'opened', value: openedBy(via), testID: 'opened' },
         ]}
       />
     </Screen>

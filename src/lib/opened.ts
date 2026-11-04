@@ -1,5 +1,5 @@
 export function openedBy(via?: string) {
-  if (via === 'launch') return 'At launch';
-  if (via === 'running') return 'While running';
-  return 'From your orders';
+  if (via === 'launch') return 'at launch';
+  if (via === 'running') return 'while running';
+  return 'from your orders';
 }

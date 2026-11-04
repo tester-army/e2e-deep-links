@@ -2,12 +2,12 @@
 
 An Expo app where a link like `e2edeeplinks://order/42` opens order #42, the way a notification tap or an email link does, tested end to end on iOS and Android with [e2e](https://www.npmjs.com/package/e2e).
 
-<img src="docs/screenshot.png" alt="Order #42 opened from a link: the link at the top, the order as a shipping label with its tracking line, and Opened: At launch" width="320">
+<img src="docs/screenshot.png" alt="order #42 opened from a link: the link at the top, the order as a shipping label with its tracking line, and opened: at launch" width="320">
 
 ## How it works
 
-- **Routes** (`src/app/`): Expo Router reads `e2edeeplinks://order/42` as `order/42` and opens `order/[id].tsx`. An id with no order shows "No order #…", and a path no route answers lands on `+not-found.tsx`.
-- **How the link arrived** (`src/app/+native-intent.tsx`): every link the OS hands the app passes through `redirectSystemPath` first, which knows whether that link launched the app. The order screen shows "At launch" or "While running".
+- **Routes** (`src/app/`): Expo Router reads `e2edeeplinks://order/42` as `order/42` and opens `order/[id].tsx`. An id with no order shows "no order #…", and a path no route answers lands on `+not-found.tsx`.
+- **How the link arrived** (`src/app/+native-intent.tsx`): every link the OS hands the app passes through `redirectSystemPath` first, which knows whether that link launched the app. The order screen shows "at launch" or "while running".
 - **Back** (`src/app/_layout.tsx`): `anchor: 'index'` puts the orders list under a linked screen, so Back works after a cold start too.
 
 Three orders live in the app. There's no backend, no account, and no key.
@@ -18,8 +18,8 @@ Three orders live in the app. There's no backend, no account, and no key.
 | -------------------------- | --------------------------- |
 | `e2edeeplinks://order/42`  | Order #42, out for delivery |
 | `e2edeeplinks://order/41`  | Order #41, delivered        |
-| `e2edeeplinks://order/999` | "No order #999"             |
-| `e2edeeplinks://track/42`  | "This link goes nowhere"    |
+| `e2edeeplinks://order/999` | "no order #999"             |
+| `e2edeeplinks://track/42`  | "this link goes nowhere"    |
 
 Send one with the app closed or open: `xcrun simctl openurl booted <link>` on the iOS simulator, or `adb shell am start -a android.intent.action.VIEW -d <link>` on the Android emulator.
 
@@ -40,12 +40,12 @@ npm run ios
 
 | Test                                           | Expects                                                                 |
 | ---------------------------------------------- | ----------------------------------------------------------------------- |
-| A link opens the order from a cold start       | Order #42, "At launch"; Back shows your orders                          |
-| A link opens the order while the app runs      | Order #42, "While running"; Back returns to order #41                   |
-| An unknown order shows the fallback            | "No order #999"; See your orders shows the list                         |
-| A link to no screen shows that it goes nowhere | "This link goes nowhere" at `/track/42`; See your orders shows the list |
+| A link opens the order from a cold start       | Order #42, "at launch"; back shows your orders                          |
+| A link opens the order while the app runs      | Order #42, "while running"; back returns to order #41                   |
+| An unknown order shows the fallback            | "no order #999"; see your orders shows the list                         |
+| A link to no screen shows that it goes nowhere | "this link goes nowhere" at `/track/42`; see your orders shows the list |
 
-iOS asks "Open in “e2e Deep Links”?" the first time a simulator opens the scheme, on behalf of `simctl`, and `device.openLink` doesn't answer it. So `tests/fixtures.ts` saves the answer on the simulator before each iOS test. After `npm run ios` or `npm run android`, run:
+iOS asks "Open in “e2e deep links”?" the first time a simulator opens the scheme, on behalf of `simctl`, and `device.openLink` doesn't answer it. So `tests/fixtures.ts` saves the answer on the simulator before each iOS test. After `npm run ios` or `npm run android`, run:
 
 ```bash
 npx e2e run --target ios

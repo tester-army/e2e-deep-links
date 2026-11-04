@@ -21,17 +21,17 @@ export default function NotFoundScreen() {
         ]}
       />
       <Missing
-        kicker="Route"
+        kicker="route"
         ghost={pathname}
         ghostTestID="not-found-path"
-        title="This link goes nowhere"
+        title="this link goes nowhere"
         titleTestID="not-found"
-        body="No screen in e2e Deep Links answers this path. The link may be old, or mistyped."
+        body="no screen in e2e deep links answers this path. the link may be old, or mistyped."
       />
       <Readout
         rows={[
-          { label: 'Screen', value: '+not-found' },
-          { label: 'Opened', value: openedBy(via), testID: 'opened' },
+          { label: 'screen', value: '+not-found' },
+          { label: 'opened', value: openedBy(via), testID: 'opened' },
         ]}
       />
     </Screen>

@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, terminal, type } from '@/constants/theme';
+import { colors, space, type } from '@/constants/theme';
 
 export type AddressPart = { text: string; tone: 'scheme' | 'route' | 'id' | 'missing' };
 
 const tones = StyleSheet.create({
-  scheme: { color: terminal.scheme },
-  route: { color: terminal.route },
-  id: { color: terminal.id },
-  missing: { color: colors.accentOrange, textDecorationLine: 'underline' },
+  scheme: { color: colors.neutral500 },
+  route: { color: colors.blue400 },
+  id: { color: colors.offWhite },
+  missing: { color: colors.mint, textDecorationLine: 'underline' },
 });
 
 export function AddressBar({ parts }: { parts: AddressPart[] }) {
@@ -20,9 +20,9 @@ export function AddressBar({ parts }: { parts: AddressPart[] }) {
           <View style={styles.dot} />
           <View style={styles.dot} />
         </View>
-        <Text style={[type.label, styles.stripLabel]}>Link</Text>
+        <Text style={[type.caption, styles.stripLabel]}>link</Text>
       </View>
-      <Text testID="address" numberOfLines={1} style={[type.code, styles.link]}>
+      <Text testID="address" numberOfLines={1} style={[type.codeM, styles.link]}>
         {parts.map((part, index) => (
           <Text key={index} style={tones[part.tone]}>
             {part.text}
@@ -34,19 +34,18 @@ export function AddressBar({ parts }: { parts: AddressPart[] }) {
 }
 
 const styles = StyleSheet.create({
-  frame: { borderWidth: 1, borderColor: terminal.border, backgroundColor: terminal.frame },
+  frame: { borderWidth: 1, borderColor: colors.neutral800, backgroundColor: colors.panel },
   strip: {
-    height: 30,
+    height: space(4),
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 12,
+    paddingHorizontal: space(1.5),
     borderBottomWidth: 1,
-    borderBottomColor: terminal.border,
-    backgroundColor: terminal.strip,
+    borderBottomColor: colors.neutral800,
   },
-  dots: { flexDirection: 'row', gap: 6 },
-  dot: { width: 8, height: 8, borderRadius: 2, backgroundColor: terminal.dot },
-  stripLabel: { color: terminal.dot },
-  link: { paddingHorizontal: 14, paddingVertical: 14 },
+  dots: { flexDirection: 'row', gap: space(0.5) },
+  dot: { width: space(1), height: space(1), backgroundColor: colors.neutral700 },
+  stripLabel: { color: colors.neutral500 },
+  link: { paddingHorizontal: space(2), paddingVertical: space(1.5) },
 });

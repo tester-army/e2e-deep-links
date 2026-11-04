@@ -1,8 +1,8 @@
 import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { OutlineButton } from '@/components/outline-button';
-import { colors, type } from '@/constants/theme';
+import { Button } from '@/components/button';
+import { colors, space, type } from '@/constants/theme';
 
 type MissingProps = {
   kicker: string;
@@ -16,34 +16,32 @@ type MissingProps = {
 export function Missing({ kicker, ghost, ghostTestID, title, titleTestID, body }: MissingProps) {
   return (
     <View style={styles.box}>
-      <Text style={[type.label, styles.faint]}>{kicker}</Text>
-      <Text testID={ghostTestID} numberOfLines={1} adjustsFontSizeToFit style={[type.ghost, styles.ghost]}>
+      <Text style={[type.caption, styles.eyebrow]}>{kicker}</Text>
+      <Text testID={ghostTestID} numberOfLines={1} adjustsFontSizeToFit style={[type.display, styles.ghost]}>
         {ghost}
       </Text>
-      <Text testID={titleTestID} accessibilityRole="header" style={[type.title, styles.primary]}>
+      <Text testID={titleTestID} accessibilityRole="header" style={[type.h3, styles.primary]}>
         {title}
       </Text>
-      <Text style={[type.bodyS, styles.secondary]}>{body}</Text>
+      <Text style={[type.bodyM, styles.secondary]}>{body}</Text>
       <View style={styles.action}>
-        <OutlineButton testID="see-orders" label="See your orders" onPress={() => router.dismissTo('/')} />
+        <Button testID="see-orders" variant="outline" label="see your orders" onPress={() => router.dismissTo('/')} />
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  // Android draws a dashed border only with a radius.
   box: {
-    gap: 10,
-    padding: 24,
+    gap: space(1.5),
+    padding: space(3),
     borderWidth: 1,
-    borderStyle: 'dashed',
-    borderRadius: 1,
-    borderColor: colors.hairlineStrong,
+    borderColor: colors.neutral800,
+    backgroundColor: colors.panel,
   },
-  ghost: { color: colors.textGhost },
-  action: { marginTop: 14 },
-  primary: { color: colors.textPrimary },
-  secondary: { color: colors.textSecondary },
-  faint: { color: colors.textFaint },
+  eyebrow: { color: colors.mint },
+  ghost: { color: colors.neutral700 },
+  action: { marginTop: space(1.5) },
+  primary: { color: colors.offWhite },
+  secondary: { color: colors.neutral400 },
 });

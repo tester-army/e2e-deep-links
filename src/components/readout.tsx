@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, type } from '@/constants/theme';
+import { colors, space, type } from '@/constants/theme';
 
 type Row = { label: string; value: string; testID?: string };
 
@@ -9,8 +9,8 @@ export function Readout({ rows }: { rows: Row[] }) {
     <View style={styles.readout}>
       {rows.map((row) => (
         <View key={row.label} style={styles.row}>
-          <Text style={[type.label, styles.faint]}>{row.label}</Text>
-          <Text testID={row.testID} style={[type.code, styles.soft]}>
+          <Text style={[type.caption, styles.muted]}>{row.label}</Text>
+          <Text testID={row.testID} style={[type.codeM, styles.primary]}>
             {row.value}
           </Text>
         </View>
@@ -20,16 +20,16 @@ export function Readout({ rows }: { rows: Row[] }) {
 }
 
 const styles = StyleSheet.create({
-  readout: { borderTopWidth: 1, borderTopColor: colors.hairline },
+  readout: { borderTopWidth: 1, borderTopColor: colors.neutral800 },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    gap: 16,
-    paddingVertical: 11,
+    gap: space(2),
+    paddingVertical: space(1.5),
     borderBottomWidth: 1,
-    borderBottomColor: colors.hairline,
+    borderBottomColor: colors.neutral800,
   },
-  soft: { color: colors.textSoft },
-  faint: { color: colors.textFaint },
+  primary: { color: colors.offWhite },
+  muted: { color: colors.neutral500 },
 });

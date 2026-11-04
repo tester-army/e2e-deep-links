@@ -1,9 +1,8 @@
 import { router } from 'expo-router';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { colors, type } from '@/constants/theme';
-
-const mark = require('../../assets/images/e2e-mark.png');
+import { Logo } from '@/components/logo';
+import { colors, space, type } from '@/constants/theme';
 
 export function AppHeader({ back = false }: { back?: boolean }) {
   return (
@@ -12,28 +11,36 @@ export function AppHeader({ back = false }: { back?: boolean }) {
         <Pressable
           testID="back"
           accessibilityRole="button"
-          accessibilityLabel="Back"
+          accessibilityLabel="back"
           hitSlop={12}
-          onPress={() => router.back()}>
-          {({ pressed }) => <Text style={[type.button, pressed ? styles.bright : styles.soft]}>← Back</Text>}
+          onPress={() => router.back()}
+          style={({ pressed }) => pressed && styles.pressed}>
+          <Text style={[type.caption, styles.link]}>[ ← back ]</Text>
         </Pressable>
       ) : (
         <View style={styles.brand}>
-          <Image source={mark} style={styles.mark} />
-          <Text style={[type.brand, styles.bright]}>e2e</Text>
-          <Text style={[type.code, styles.faint]}>/ deep links</Text>
+          <Logo height={24} />
+          <Text style={[type.caption, styles.muted]}>/ deep links</Text>
         </View>
       )}
-      {back && <Image source={mark} style={styles.mark} />}
+      {back && <Logo height={24} />}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  header: { height: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  brand: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  mark: { width: 24, height: 24 },
-  bright: { color: colors.textPrimary },
-  soft: { color: colors.textSoft },
-  faint: { color: colors.textFaint },
+  header: {
+    height: space(8),
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginHorizontal: -space(3),
+    paddingHorizontal: space(3),
+    borderBottomWidth: 1,
+    borderBottomColor: colors.neutral800,
+  },
+  brand: { flexDirection: 'row', alignItems: 'center', gap: space(1.5) },
+  pressed: { opacity: 0.6 },
+  link: { color: colors.blue400 },
+  muted: { color: colors.neutral500 },
 });

@@ -14,7 +14,7 @@ export function link(path: string) {
 }
 
 export const test = base.extend<{ schemeApproved: void }>({
-  // iOS asks "Open in “e2e Deep Links”?" the first time a simulator opens the scheme, and device.openLink doesn't
+  // iOS asks "Open in “e2e deep links”?" the first time a simulator opens the scheme, and device.openLink doesn't
   // answer it, so each test saves the answer in the simulator's preferences first.
   schemeApproved: async ({ device, platform }, use) => {
     if (platform === 'ios') {
